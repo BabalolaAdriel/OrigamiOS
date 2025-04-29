@@ -15,14 +15,14 @@
         180,
         -40
       ],
-      "webhookId": "574ef705-b19f-41ff-9e0e-d3144d7040f1"
+      "webhookId": "REPLACE_WITH_YOUR_WEBHOOK_ID"
     },
     {
       "parameters": {
-        "fromEmail": "boluwatife12700@gmail.com",
-        "toEmail": "boluwatife12700@gmail.com",
+        "fromEmail": "REPLACE_WITH_YOUR_EMAIL@gmail.com",
+        "toEmail": "REPLACE_WITH_YOUR_EMAIL@gmail.com",
         "subject": "Your Origami Daily Plan",
-        "text": "=Here’s what you should focus on today:\n\n{{$json.fullResponse}}\n",
+        "text": "=Here's what you should focus on today:\n\n{{$json.fullResponse}}\n",
         "options": {}
       },
       "id": "dc4580a7-dcda-4e90-bb8a-2199c5d96158",
@@ -35,14 +35,14 @@
       ],
       "credentials": {
         "smtp": {
-          "id": "tsfaIK81GzkTd2Iu",
+          "id": "REPLACE_WITH_YOUR_SMTP_CREDENTIAL_ID",
           "name": "SMTP account"
         }
       }
     },
     {
       "parameters": {
-        "chatId": "6926782965",
+        "chatId": "REPLACE_WITH_YOUR_TELEGRAM_CHAT_ID",
         "text": "=Your Origami agent says:\n\n{{$json.fullResponse}}\n",
         "additionalFields": {}
       },
@@ -54,18 +54,18 @@
         1060,
         200
       ],
-      "webhookId": "df9a7e77-f3b9-441c-bd62-ebaaa3f9b44f",
+      "webhookId": "REPLACE_WITH_YOUR_WEBHOOK_ID",
       "credentials": {
         "telegramApi": {
-          "id": "DXfNBaJGboj437XM",
+          "id": "REPLACE_WITH_YOUR_TELEGRAM_CREDENTIAL_ID",
           "name": "Telegram account"
         }
       }
     },
     {
       "parameters": {
-        "fromEmail": "boluwatife12700@gmail.com",
-        "toEmail": "boluwatife12700@gmail.com",
+        "fromEmail": "REPLACE_WITH_YOUR_EMAIL@gmail.com",
+        "toEmail": "REPLACE_WITH_YOUR_EMAIL@gmail.com",
         "subject": "Bible Time Reminder",
         "text": "Hey! It's time to read your Bible. 🙏📖",
         "options": {}
@@ -80,15 +80,15 @@
       ],
       "credentials": {
         "smtp": {
-          "id": "tsfaIK81GzkTd2Iu",
+          "id": "REPLACE_WITH_YOUR_SMTP_CREDENTIAL_ID",
           "name": "SMTP account"
         }
       }
     },
     {
       "parameters": {
-        "chatId": "6926782965",
-        "text": "🙏 Hey, it’s time for your Bible reading session! (6:30am / 11:30pm)",
+        "chatId": "REPLACE_WITH_YOUR_TELEGRAM_CHAT_ID",
+        "text": "🙏 Hey, it's time for your Bible reading session! (6:30am / 11:30pm)",
         "additionalFields": {}
       },
       "id": "30c6997e-659c-4efe-bfcc-d52a755e23bb",
@@ -99,10 +99,10 @@
         580,
         540
       ],
-      "webhookId": "25563290-42ec-4a65-96d2-6756660f0024",
+      "webhookId": "REPLACE_WITH_YOUR_WEBHOOK_ID",
       "credentials": {
         "telegramApi": {
-          "id": "DXfNBaJGboj437XM",
+          "id": "REPLACE_WITH_YOUR_TELEGRAM_CREDENTIAL_ID",
           "name": "Telegram account"
         }
       }
@@ -112,12 +112,12 @@
         "operation": "appendOrUpdate",
         "documentId": {
           "__rl": true,
-          "value": "11uY57KrXQlHO-8FCJ8DytkkDQD25mA_chIaPdKYvSQI",
+          "value": "REPLACE_WITH_YOUR_GOOGLE_SHEETS_DOC_ID",
           "mode": "id"
         },
         "sheetName": {
           "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/11uY57KrXQlHO-8FCJ8DytkkDQD25mA_chIaPdKYvSQI/edit?gid=0#gid=0",
+          "value": "https://docs.google.com/spreadsheets/d/REPLACE_WITH_YOUR_GOOGLE_SHEETS_DOC_ID/edit?gid=0#gid=0",
           "mode": "url"
         },
         "columns": {
@@ -198,7 +198,7 @@
       "name": "Google Sheets",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "FiVYUxh9BGcviHda",
+          "id": "REPLACE_WITH_YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
           "name": "Google Sheets account"
         }
       }
@@ -207,12 +207,12 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "11uY57KrXQlHO-8FCJ8DytkkDQD25mA_chIaPdKYvSQI",
+          "value": "REPLACE_WITH_YOUR_GOOGLE_SHEETS_DOC_ID",
           "mode": "id"
         },
         "sheetName": {
           "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/11uY57KrXQlHO-8FCJ8DytkkDQD25mA_chIaPdKYvSQI/edit?gid=0#gid=0",
+          "value": "https://docs.google.com/spreadsheets/d/REPLACE_WITH_YOUR_GOOGLE_SHEETS_DOC_ID/edit?gid=0#gid=0",
           "mode": "url"
         },
         "options": {}
@@ -227,7 +227,7 @@
       "name": "Google Sheets1",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "FiVYUxh9BGcviHda",
+          "id": "REPLACE_WITH_YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
           "name": "Google Sheets account"
         }
       }
@@ -251,7 +251,7 @@
         "url": "https://openrouter.ai/api/v1/chat/completions",
         "sendHeaders": true,
         "specifyHeaders": "json",
-        "jsonHeaders": "{\n    \"Authorization\": \"Bearer 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\", \n    \"HTTP-Referer\": \"https://n8n.io\", \n    \"Content-Type\": \"application/json\"\n}\n",
+        "jsonHeaders": "{\n    \"Authorization\": \"Bearer REPLACE_WITH_YOUR_OPENROUTER_API_KEY\", \n    \"HTTP-Referer\": \"https://n8n.io\", \n    \"Content-Type\": \"application/json\"\n}\n",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"model\": \"mistralai/mistral-7b-instruct:free\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are Origami AI. Respond ONLY in format:\\n1. [🔴] Task (Time)\\n2. [🟡] Task (Time)\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"{{$json.promptTasks}}\"\n    }\n  ]\n}",
@@ -367,7 +367,7 @@
     },
     {
       "parameters": {
-        "toRecipients": "adrielbabalola@outlook.com",
+        "toRecipients": "REPLACE_WITH_YOUR_EMAIL@example.com",
         "subject": "This is your daily Reminder",
         "bodyContent": "=Your Origami agent says:\n\n{{$json.fullResponse}}",
         "additionalFields": {}
@@ -380,10 +380,10 @@
       ],
       "id": "64aa1793-a47b-427c-8020-b6202c4aa3b0",
       "name": "Microsoft Outlook",
-      "webhookId": "e81f5af7-25e2-4855-984a-dc951dfeb6e9",
+      "webhookId": "REPLACE_WITH_YOUR_WEBHOOK_ID",
       "credentials": {
         "microsoftOutlookOAuth2Api": {
-          "id": "gzsqkAdjYzXQcPNI",
+          "id": "REPLACE_WITH_YOUR_OUTLOOK_CREDENTIAL_ID",
           "name": "Microsoft Outlook account"
         }
       }
@@ -403,7 +403,7 @@
     },
     {
       "parameters": {
-        "toRecipients": "adrielbabalola@outlook.com",
+        "toRecipients": "REPLACE_WITH_YOUR_EMAIL@example.com",
         "subject": "This is your daily Reminder",
         "bodyContent": "=Your Origami agent says:\n\n{{$json.fullResponse}}",
         "additionalFields": {}
@@ -416,10 +416,10 @@
       ],
       "id": "405fdba9-c4a0-4601-9508-745df00c0298",
       "name": "Microsoft Outlook1",
-      "webhookId": "e81f5af7-25e2-4855-984a-dc951dfeb6e9",
+      "webhookId": "REPLACE_WITH_YOUR_WEBHOOK_ID",
       "credentials": {
         "microsoftOutlookOAuth2Api": {
-          "id": "gzsqkAdjYzXQcPNI",
+          "id": "REPLACE_WITH_YOUR_OUTLOOK_CREDENTIAL_ID",
           "name": "Microsoft Outlook account"
         }
       }
