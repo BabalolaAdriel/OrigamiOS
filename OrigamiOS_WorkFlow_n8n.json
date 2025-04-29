@@ -1,0 +1,599 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "origami-idea-webhook",
+        "options": {}
+      },
+      "id": "102194a6-f8c7-4af3-be49-ecb9498068be",
+      "name": "Capture Idea",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        180,
+        -40
+      ],
+      "webhookId": "574ef705-b19f-41ff-9e0e-d3144d7040f1"
+    },
+    {
+      "parameters": {
+        "fromEmail": "boluwatife12700@gmail.com",
+        "toEmail": "boluwatife12700@gmail.com",
+        "subject": "Your Origami Daily Plan",
+        "text": "=Here’s what you should focus on today:\n\n{{$json.fullResponse}}\n",
+        "options": {}
+      },
+      "id": "dc4580a7-dcda-4e90-bb8a-2199c5d96158",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        980,
+        -40
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "tsfaIK81GzkTd2Iu",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "6926782965",
+        "text": "=Your Origami agent says:\n\n{{$json.fullResponse}}\n",
+        "additionalFields": {}
+      },
+      "id": "72c82816-51a6-4176-98ae-01a9bba2a3b3",
+      "name": "Send Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        200
+      ],
+      "webhookId": "df9a7e77-f3b9-441c-bd62-ebaaa3f9b44f",
+      "credentials": {
+        "telegramApi": {
+          "id": "DXfNBaJGboj437XM",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "boluwatife12700@gmail.com",
+        "toEmail": "boluwatife12700@gmail.com",
+        "subject": "Bible Time Reminder",
+        "text": "Hey! It's time to read your Bible. 🙏📖",
+        "options": {}
+      },
+      "id": "16e494fc-1d96-4243-94d8-0da6c3cd5014",
+      "name": "Bible Email Reminder",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        360,
+        420
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "tsfaIK81GzkTd2Iu",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "6926782965",
+        "text": "🙏 Hey, it’s time for your Bible reading session! (6:30am / 11:30pm)",
+        "additionalFields": {}
+      },
+      "id": "30c6997e-659c-4efe-bfcc-d52a755e23bb",
+      "name": "Bible Telegram Reminder",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        580,
+        540
+      ],
+      "webhookId": "25563290-42ec-4a65-96d2-6756660f0024",
+      "credentials": {
+        "telegramApi": {
+          "id": "DXfNBaJGboj437XM",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "11uY57KrXQlHO-8FCJ8DytkkDQD25mA_chIaPdKYvSQI",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/11uY57KrXQlHO-8FCJ8DytkkDQD25mA_chIaPdKYvSQI/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{$now}}\n",
+            "Idea": "={{$json['body']['tasks']}}",
+            " Priority": "={{$json[\"body\"][\"priority\"]}}",
+            " When": "={{$json[\"body\"][\"when\"]}}\n\n",
+            "Due": "={{$json[\"body\"][\"due\"]}}"
+          },
+          "matchingColumns": [
+            "Timestamp"
+          ],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Idea",
+              "displayName": "Idea",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": " Priority",
+              "displayName": " Priority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": " When",
+              "displayName": " When",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Due",
+              "displayName": "Due",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        480,
+        0
+      ],
+      "id": "c5d983a8-4ca5-4320-8dc3-d0b7b5dabc7d",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "FiVYUxh9BGcviHda",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "11uY57KrXQlHO-8FCJ8DytkkDQD25mA_chIaPdKYvSQI",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/11uY57KrXQlHO-8FCJ8DytkkDQD25mA_chIaPdKYvSQI/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -20,
+        120
+      ],
+      "id": "fbecc630-5e39-4b3e-bc3b-d34e379eb754",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "FiVYUxh9BGcviHda",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process all Google Sheets rows into a single AI prompt\nconst tasks = items.map(item => {\n  // Normalize keys and values\n  const json = Object.fromEntries(\n    Object.entries(item.json).map(([k, v]) => [\n      k.trim(), \n      typeof v === 'string' ? v.trim() : v\n    ])\n  );\n  \n  // Clean and format each task\n  return {\n    priority: json.Priority || 'Medium',\n    task: json.Idea || '',\n    due: json.Due ? json.Due.replace(/(\\d+)(th|nd|rd|st)/, '$1') : '',\n    when: json.When ? json.When.replace(/\\n+/g, ' ') : ''\n  };\n});\n\n// Build the consolidated AI prompt\nconst promptTasks = `INSTRUCTIONS:\n1. Analyze these ${tasks.length} tasks\n2. Return as numbered priority list:\n   - [🔴|🟡|🟢] Task (Time): Reason\n\nTASKS:\n${tasks.map((t, i) => \n  `${i+1}. ${t.task} (${t.when}, Due: ${t.due}) [${t.priority}]`\n).join('\\n')}\n\nOUTPUT:`;\n\nreturn [{\n  json: {\n    promptTasks,\n    meta: {\n      totalTasks: tasks.length,\n      urgentCount: tasks.filter(t => t.priority === 'High').length\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        160,
+        160
+      ],
+      "id": "9201b4b5-529c-4e4b-909f-824da6422dc0",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n    \"Authorization\": \"Bearer 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\", \n    \"HTTP-Referer\": \"https://n8n.io\", \n    \"Content-Type\": \"application/json\"\n}\n",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"mistralai/mistral-7b-instruct:free\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are Origami AI. Respond ONLY in format:\\n1. [🔴] Task (Time)\\n2. [🟡] Task (Time)\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"{{$json.promptTasks}}\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        220
+      ],
+      "id": "476404d9-df91-4aa8-9353-5f230a31b3fd",
+      "name": "Ask AI"
+    },
+    {
+      "parameters": {
+        "jsCode": "const aiResponse = $input.all()[0].json.choices[0].message.content;\n\n// Extract just the priority list (remove extra suggestions)\nconst priorityList = aiResponse.split('\\n')[0].trim(); \n\nreturn [{\n  json: {\n    priorities: priorityList,\n    fullResponse: aiResponse  // Keep original if needed\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        860,
+        200
+      ],
+      "id": "650d737a-219d-44ec-894b-aca063c5b486",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const aiResponse = $input.all()[0].json.choices[0].message.content;\n\n// Split the response by line breaks\nconst lines = aiResponse.split('\\n');\n\n// Filter and format task lines (those that start with \"1.\", \"2.\", etc.)\nconst tasks = lines\n  .filter(line => /^\\s*\\d+\\./.test(line)) // Matches lines starting with numbers like 1. 2. etc.\n  .map(line => line.trim()); // Clean up whitespace\n\nreturn [{\n  json: {\n    priorities: tasks,        // An array of tasks\n    fullResponse: aiResponse  // Keep full response if needed\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        40
+      ],
+      "id": "d2657efa-fed6-4e13-9ac8-f3561f4a2570",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{\n  json: {\n    promptTasks: $input.all()[0].json.promptTasks\n      .replace(/\"/g, '\\\\\"')  // Escape quotes\n      .replace(/\\n/g, '\\\\n') // Escape newlines\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        340,
+        160
+      ],
+      "id": "41866199-a541-4cac-87d9-df6da6420f91",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 3
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -240,
+        200
+      ],
+      "id": "e73cf515-b29b-4c5e-ab93-874fa011fec2",
+      "name": "Trigger Daily1"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 23,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -20,
+        380
+      ],
+      "id": "b87a4284-70b6-4a40-9fee-1d040a7cd702",
+      "name": "Bible Reminder 11:30PM"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 6,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        580
+      ],
+      "id": "ff146578-0471-4a70-82cc-8cac14aae670",
+      "name": "Bible Reminder 6:30 am"
+    },
+    {
+      "parameters": {
+        "toRecipients": "adrielbabalola@outlook.com",
+        "subject": "This is your daily Reminder",
+        "bodyContent": "=Your Origami agent says:\n\n{{$json.fullResponse}}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        460
+      ],
+      "id": "64aa1793-a47b-427c-8020-b6202c4aa3b0",
+      "name": "Microsoft Outlook",
+      "webhookId": "e81f5af7-25e2-4855-984a-dc951dfeb6e9",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "gzsqkAdjYzXQcPNI",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const aiResponse = $input.all()[0].json.choices[0].message.content;\n\n// Extract just the priority list (remove extra suggestions)\nconst priorityList = aiResponse.split('\\n')[0].trim(); \n\nreturn [{\n  json: {\n    priorities: priorityList,\n    fullResponse: aiResponse  // Keep original if needed\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        740,
+        360
+      ],
+      "id": "1a4e0c83-28eb-4899-9cc6-61809fdb271a",
+      "name": "Code4"
+    },
+    {
+      "parameters": {
+        "toRecipients": "adrielbabalola@outlook.com",
+        "subject": "This is your daily Reminder",
+        "bodyContent": "=Your Origami agent says:\n\n{{$json.fullResponse}}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        340,
+        680
+      ],
+      "id": "405fdba9-c4a0-4601-9508-745df00c0298",
+      "name": "Microsoft Outlook1",
+      "webhookId": "e81f5af7-25e2-4855-984a-dc951dfeb6e9",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "gzsqkAdjYzXQcPNI",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Capture Idea": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        []
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ask AI": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "Ask AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger Daily1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bible Reminder 11:30PM": {
+      "main": [
+        [
+          {
+            "node": "Bible Email Reminder",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Bible Telegram Reminder",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Microsoft Outlook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bible Reminder 6:30 am": {
+      "main": [
+        [
+          {
+            "node": "Bible Email Reminder",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Bible Telegram Reminder",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Microsoft Outlook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code4": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "d67edc52-b941-4b3c-982c-0ad7b51ff88e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2d89d533ba183904dae55aaec5a1c06336978fa80434e80bb406336fb16415db"
+  },
+  "id": "ZN3snIAkfhNrPoDx",
+  "tags": []
+}
