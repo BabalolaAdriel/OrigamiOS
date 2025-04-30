@@ -8,6 +8,8 @@
 
 ```bash
 ├── index.html                   # Frontend input form (HTML/CSS/JS)
+├── styles.css
+├── script.js    
 ├── OrigamiOS_WorkFlow_n8n.json # n8n backend automation workflow
 ├── LICENSE                      # MIT License
 └── README.md                    # Project documentation
